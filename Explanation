@@ -1,0 +1,25 @@
+The aim of this project for the system is to recognize my hand gesture.
+I have a dog and it performs actions based on my hand gesture like sit and stand. So I thought why cant I make the computer to do the same.
+
+This project has two phases.The first phase is to seperate the hand region from the video sequence.The second phase is to count the no of fingers.
+
+
+Phase 1 : Separating the hand region from the video sequence:
+1.The Background image is introduced to the computer vision.The model calculates the running average for the background.The concept of running averages for background subraction.The system looks over a particular scene for 30 frames and calculates the running average for all the frames.
+2.Now when a new object like hand is introduced into a background ,CV treats it as a foreground image when there is a difference between the background and the hand.So the unwanted portions are neglected and only the hand region is taken.
+3.By converting the hand region to gray scale image,the threshold function is applied to make the hand region and other region black.After thresholding the difference image,we find contours in the resulting image.The contour with the largest area is assumed to be in our hand.
+
+
+Phase 2 :  Count the no of fingers.
+1. Find the convex full of the segmented hand region to compute the most extreme points in the convex full.(Extreme Top,Extreme Bottom,Extreme Left,Extreme Right)
+2.Find the centre of palm using these extreme points in the convex full
+3.Using the palm's centre,construct a circle with the maximum Euclidean Distance(between palm's centre and extreme points) as radius.
+4.Perform bitwise AND operation between the threshold hand image(frame) and the circular ROI(mask).This reveals the finger slices which could further be used to calculate the no. of the fingures shown.
+
+
+IMPORTANT FUNCTIONS USED:
+              1.convexfull()
+              2.Euclidean_distance()
+              3.Find_contours()
+              4.CV2.BitwiseAND()
+              5.accumulateWeighted()
