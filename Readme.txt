@@ -11,9 +11,7 @@ Libraries needed
 --> sklearn
 
 
-
-
-
-Usage
---> python segment.py
---> python recognize.py
+Usage:
+1.Initialise the libraries 
+2.Run Segment.py
+3.Run Recognize.py
